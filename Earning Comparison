@@ -1,0 +1,9 @@
+//Problem Statement - Employees Earning More Than Their Managers
+// https://leetcode.com/problems/employees-earning-more-than-their-managers/description/
+
+
+Select A.Name As Employee
+  From Employee As A
+  Inner Join Employee As B
+  On B.Id = A.ManagerId
+  Where A.Salary > B.Salary;
