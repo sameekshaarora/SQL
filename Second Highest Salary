@@ -1,0 +1,7 @@
+// Problem Statement - Second Highest Salary
+// https://leetcode.com/problems/second-highest-salary/description/
+
+
+Select Max(Salary) As SecondHighestSalary
+      From Employee
+      Where Salary Not In ( Select Max(Salary) From Employee);
