@@ -1,0 +1,15 @@
+// Problem Statement - NTH Highest Salary
+// https://leetcode.com/problems/nth-highest-salary/description/
+
+
+CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
+BEGIN
+      DECLARE offset_val INT DEFAULT N-1;  # declare a value to skip the (N-1) values before the Nth value
+  RETURN (
+      # Write your MySQL query statement below.
+      Select Distinct Salary As getNthHighestSalary
+             From     Employee
+         Order By     Salary Desc            # Sort the table before selecting output
+         Limit 1 Offset offset_val           # Limit => pick one value ; # Offset => skip the offset_val number of value
+  );
+END
