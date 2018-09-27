@@ -1,0 +1,79 @@
+/* display the names (first_name, last_name) using alias name “First Name", "Last Name" */
+Select first_name as 'first name', last_name as 'last name' 
+From employees;
+
+/* get unique department ID from employee table */
+Select Distinct Department_Id as Department_Id 
+From employees;
+
+/* get all employee details from the employee table order by first name, descending */
+Select * 
+From employees
+Order By first_name Deesc;
+
+/*get the names (first_name, last_name), salary, PF of all the employees (PF is calculated as 15% of salary)  */
+Select first_name as 'first name', last_name as 'last name', 
+       salary as 'Salary', (0.15 * salary) as 'PF'
+From employees;
+
+/*to get the employee ID, names (first_name, last_name), salary in ascending order of salary */
+Select employee_ID as 'ID', first_name as 'first name', 
+       last_name as 'last name', salary as 'Salary'
+From employees
+Order By salary ASC;
+
+/* to get the total salaries payable to employees */
+Select sum(salary)
+From employees;
+
+/* to get the maximum and minimum salary from employees table */
+Select max(salary) as 'max',  min(salary) as 'min'
+From employees;
+
+/* get the average salary and number of employees in the employees table */
+Select (sum(salary)/count(distinct employee_id)) as 'Average', /*or Avg(salary)*/
+       count(distinct employee_id)
+From employees;
+
+/* get the number of employees working with the company */
+Select count(*)
+From employees;
+
+/* */
+SELECT COUNT(DISTINCT job_id) 
+    FROM employees;
+
+/* pick first name in UPPER CASE*/
+Select UPPER(first_name)
+From employees;
+
+/* Math calculation */
+Select (171*214+625) as "Result";
+
+/* Concatenate first & last name columns as a single column  */
+Select CONCAT(first_name, ' ', last_name) as 'Employee name' 
+From employees;
+
+/* Remove white spaces from field first_name*/
+SELECT TRIM(first_name) 
+    FROM employees; 
+
+/* Calculate length of first & last name */
+SELECT first_name,last_name, LENGTH(first_name)+LENGTH(last_name)  'Length of  Names'  /*Calculate length of name*/
+    FROM employees;
+    
+/* Find first anmes with numbers in it */
+Select first_name
+From employees
+Where first_name LIKE '%0123456789%'; /*OR first_name REGEXP  '[0-9]';*/
+
+/* Display top 10 results */
+Select employee_id,first_name
+From employees
+Limit 0,10; /*pick first 10 values*/
+
+/* Get monthly salary upto 2 decimal places*/
+Select employee_id,  Round ( (Salary/12), 2) as 'Monthly Salary'
+From employees;
+
+
