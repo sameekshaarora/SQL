@@ -1,0 +1,32 @@
+// PROBLEM STATEMENT - trips & Users - Determine the percentage cancelled by unbanned users for all the dates
+
+# Write your MySQL query statement below
+
+# Cancellation Rate = No. of cancellation per day / Total Number of Trips where user Id is client
+
+Select Distinct T1.Request_at as "Day", 
+Round ((case when T2.Cancellation_Rate > 0 then ( T2.Cancellation_Rate/T3.Total_Trips ) else 0.00 end),2) as "Cancellation Rate"
+From Trips T1
+
+left Join 
+( Select count(Id) as Cancellation_Rate,Request_at 
+ From Trips 
+ Where Status In('cancelled_by_client','cancelled_by_driver') 
+ And Client_Id In 
+( Select distinct Users_Id from Users Where Banned = 'No' And Role = 'client' ) 
+Group By Request_at ) T2 
+On T1.Request_at = T2.Request_at 
+
+left Join 
+( Select count(Id) as Total_Trips,Request_at 
+ From Trips 
+ Where  
+ Client_Id In 
+( Select distinct Users_Id from Users Where Banned = 'No' And Role = 'client' ) 
+Group By Request_at ) T3 
+On T2.Request_at = T3.Request_at
+
+Where T1.Client_Id In 
+( Select distinct Users_Id from Users Where Banned = 'No' And Role = 'client' )
+
+And T1.Request_At Between '2013-10-01' and '2013-10-03'
