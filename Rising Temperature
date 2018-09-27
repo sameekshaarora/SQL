@@ -1,0 +1,13 @@
+//Problem Statement - Given a Weather table, write a SQL query to find all dates' Ids with higher temperature compared to its previous (yesterday's) dates.
+
+# Write your MySQL query statement below
+# EXPLANATION:
+# KEYWORD=> TO_DAYS(DATE) return the number of days between from year 0 to date DATE
+# TO_DAYS(DATE1)-TO_DAYS(DATE2)=1  => verifies if the date2 is yesterday of date1
+
+
+Select V1.Id
+From Weather V1, Weather V2
+Where 
+     To_Days(V1.RecordDate) - To_Days(V2.RecordDate) = 1
+ And V1.Temperature > V2.Temperature
