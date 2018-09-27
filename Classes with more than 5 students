@@ -1,0 +1,6 @@
+# Please list out all classes which have more than or equal to 5 students. Write your MySQL query statement below
+
+Select distinct class 
+     From courses
+     Group by class
+     Having count(distinct student) >= 5.
