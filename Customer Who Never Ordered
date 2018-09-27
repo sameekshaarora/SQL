@@ -1,0 +1,7 @@
+//Problem Statement - Determine customers who never ordered
+
+# Write your MySQL query statement below
+
+Select Name As Customers
+  From Customers
+  Where Id Not In ( Select CustomerId From Orders )
