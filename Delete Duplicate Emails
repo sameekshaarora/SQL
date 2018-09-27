@@ -1,0 +1,6 @@
+//Problem Statement - To delete the duplicate emails
+
+# Write your MySQL query statement below
+
+Delete From Person Where ID Not In 
+                        ( Select Id From ( Select Min(Id) As Id from Person Group by Email ) As Id_table )
