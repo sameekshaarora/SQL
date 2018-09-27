@@ -1,0 +1,9 @@
+//Problem Statement - DEtermine the departments highest salary
+
+# Write your MySQL query statement below
+
+  Select  D1.Name as Department, E1.Name as Employee, E1.Salary
+    From Employee As E1
+    Inner Join Department as D1 On E1.DepartmentId = D1.Id
+    Where ( E1.DepartmentId, E1.Salary ) In
+    ( Select DepartmentId, Max(Salary) From Employee Group By DepartmentId)
